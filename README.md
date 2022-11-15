@@ -27,7 +27,7 @@
 
 ### 架构图
 
-![Architecture.png](README.assets/RbfIWAt5K2xg8rS.png)
+![Architecture.png](https://s2.loli.net/2022/11/15/RbfIWAt5K2xg8rS.png)
 
 ### 扩展接口设计
 
