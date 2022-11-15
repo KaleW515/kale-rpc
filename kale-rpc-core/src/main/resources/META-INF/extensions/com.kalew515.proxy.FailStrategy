@@ -1,0 +1,3 @@
+fail-fast=com.kalew515.proxy.failstrategy.FailFast
+fail-over=com.kalew515.proxy.failstrategy.FailOver
+fail-safe=com.kalew515.proxy.failstrategy.FailSafe

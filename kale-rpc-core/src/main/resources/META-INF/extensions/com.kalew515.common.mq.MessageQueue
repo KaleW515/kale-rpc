@@ -1,0 +1,2 @@
+local=com.kalew515.common.mq.local.LocalMessageQueue
+rocketmq=com.kalew515.common.mq.rocketmq.RocketMessageQueue

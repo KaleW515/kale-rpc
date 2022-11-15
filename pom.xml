@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kalew515</groupId>
+    <artifactId>kale-rpc</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1.0</version>
+    <modules>
+        <module>kale-rpc-core</module>
+        <module>kale-rpc-spring-boot-autoconfigure</module>
+        <module>kale-rpc-spring-boot-starter</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <netty-all>4.1.84.Final</netty-all>
+        <kryo>4.0.2</kryo>
+        <cglib>3.3.0</cglib>
+        <curator-framework>5.4.0</curator-framework>
+        <curator-recipes>5.4.0</curator-recipes>
+        <spring-boot-starter>2.7.5</spring-boot-starter>
+        <fastjson>1.2.83</fastjson>
+        <junit>4.13.2</junit>
+        <rpc-version>0.1.0</rpc-version>
+        <rocketmq-client>4.9.3</rocketmq-client>
+    </properties>
+</project>

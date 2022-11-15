@@ -1,0 +1,7 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.kalew515.spring.boot.autoconfigure.KaleRpcAutoConfiguration
+org.springframework.context.ApplicationListener=\
+  com.kalew515.common.spring.listener.WelcomeLogoListener,\
+  com.kalew515.common.spring.listener.RpcServerStartListener,\
+  com.kalew515.common.spring.listener.ConfigCenterInitListener,\
+  com.kalew515.common.spring.listener.ServicePublishListener

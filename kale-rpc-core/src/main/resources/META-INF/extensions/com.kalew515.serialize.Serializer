@@ -1,0 +1,2 @@
+kryo=com.kalew515.serialize.kryo.KryoSerializer
+json=com.kalew515.serialize.json.JsonSerializer

@@ -1,0 +1,3 @@
+random=com.kalew515.cluster.loadbalancer.RandomLoadBalance
+min-conn=com.kalew515.cluster.loadbalancer.MinConnLoadBalance
+min-call=com.kalew515.cluster.loadbalancer.MinCallLoadBalance

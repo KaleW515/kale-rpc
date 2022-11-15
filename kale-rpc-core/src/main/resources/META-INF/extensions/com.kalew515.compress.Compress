@@ -1,0 +1,2 @@
+gzip=com.kalew515.compress.gzip.GzipCompress
+dont=com.kalew515.compress.dont.DoNotCompress
