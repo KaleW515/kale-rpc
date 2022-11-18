@@ -2,34 +2,27 @@ package com.kalew515.cluster.loadbalancer;
 
 import com.kalew515.cluster.AbstractLoadBalance;
 import com.kalew515.common.factory.SingletonFactory;
-import com.kalew515.config.ConfigCenter;
-import com.kalew515.config.ConfigCenterImpl;
 import com.kalew515.exchange.impl.RpcRequest;
-import com.kalew515.utils.CuratorUtil;
-import org.apache.curator.framework.CuratorFramework;
+import com.kalew515.monitor.MonitorCenter;
+import com.kalew515.monitor.MonitorCenterImpl;
 
 import java.util.List;
 import java.util.Set;
-
-import static com.kalew515.config.constants.RpcConfigConstants.RPC_MONITOR_CENTER_ADDRESS;
 
 public class MinConnLoadBalance extends AbstractLoadBalance {
 
     @Override
     protected String doSelect (List<String> serviceAddresses, RpcRequest rpcRequest,
                                Set<String> blackList) {
-        ConfigCenter configCenter = SingletonFactory.getInstance(ConfigCenterImpl.class);
-        String address = configCenter.getConfig(RPC_MONITOR_CENTER_ADDRESS);
-        CuratorFramework zkClient = CuratorUtil.getZkClient(address);
+        MonitorCenter monitorCenter = SingletonFactory.getInstance(MonitorCenterImpl.class);
 
         int min = Integer.MAX_VALUE;
         String url = null;
         for (String serverUrl : serviceAddresses) {
             if (!blackList.contains(serverUrl)) {
-                List<String> list = CuratorUtil.getDeviceChildrenNodes(zkClient,
-                                                                       serverUrl.split(":")[0]);
-                if (list.size() < min) {
-                    min = list.size();
+                Integer connectionTimes = monitorCenter.getConnectionTimes(serverUrl);
+                if (connectionTimes < min) {
+                    min = connectionTimes;
                     url = serverUrl;
                 }
             }
