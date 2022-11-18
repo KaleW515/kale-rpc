@@ -4,6 +4,8 @@ public class RpcDefaultConfig {
 
     public static final String DEFAULT_CONFIG_CENTER = "local";
 
+    public static final String DEFAULT_USE_REMOTE_CONFIG = "false";
+
     public static final String DEFAULT_REGISTER_CENTER = "zk";
 
     public static final String DEFAULT_MONITOR_CENTER = "zk";

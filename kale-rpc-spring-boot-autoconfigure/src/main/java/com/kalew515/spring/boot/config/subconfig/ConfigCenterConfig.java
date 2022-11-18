@@ -6,6 +6,8 @@ public class ConfigCenterConfig {
 
     public String address;
 
+    public Boolean useRemoteConfig;
+
     public String getName () {
         return name;
     }

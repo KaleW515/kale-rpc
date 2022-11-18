@@ -13,4 +13,9 @@ public class StringUtils {
         }
         return true;
     }
+
+    public static boolean isEquals (String s, String target) {
+        if (isBlank(s)) return false;
+        return s.equals(target);
+    }
 }

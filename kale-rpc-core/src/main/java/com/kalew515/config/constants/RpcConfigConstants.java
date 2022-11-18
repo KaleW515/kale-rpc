@@ -27,6 +27,8 @@ public class RpcConfigConstants {
     public static final String RPC_MONITOR_CENTER_NAME = "kale-rpc.monitor-center.name";
     public static final String RPC_MONITOR_CENTER_ADDRESS = "kale-rpc.monitor-center.address";
     public static final String RPC_CONFIG_CENTER_NAME = "kale-rpc.config-center.name";
+    public static final String RPC_CONFIG_CENTER_USE_REMOTE_CONFIG = "kale-rpc.config-center" +
+            ".use-remote-config";
     private static volatile Map<String, String> keys;
 
     public static Map<String, String> getConfigMap () {
@@ -44,6 +46,7 @@ public class RpcConfigConstants {
                     keys.put(RPC_MONITOR_CENTER_NAME, DEFAULT_MONITOR_CENTER);
                     keys.put(RPC_MONITOR_CENTER_ADDRESS, DEFAULT_ZK_ADDRESS);
                     keys.put(RPC_CONFIG_CENTER_NAME, DEFAULT_CONFIG_CENTER);
+                    keys.put(RPC_CONFIG_CENTER_USE_REMOTE_CONFIG, DEFAULT_USE_REMOTE_CONFIG);
                     keys.put(RPC_SERIALIZER, DEFAULT_SERIALIZATION);
                     keys.put(RPC_COMPRESS, DEFAULT_COMPRESS);
                     keys.put(RPC_LOAD_BALANCER, DEFAULT_LOAD_BALANCER);

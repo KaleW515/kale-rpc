@@ -28,7 +28,10 @@ public class ConfigCenterInitListener implements ApplicationListener<Application
     public void onApplicationEvent (ApplicationContextInitializedEvent event) {
         logger.info("ConfigCenterInitListener");
         ConfigurableEnvironment environment = event.getApplicationContext().getEnvironment();
-        doConfigInit(environment);
+        String useRemoteConfig = environment.getProperty(RPC_CONFIG_CENTER_USE_REMOTE_CONFIG);
+        if (useRemoteConfig == null || !useRemoteConfig.equals("true")) {
+            doConfigInit(environment);
+        }
     }
 
     private void doConfigInit (ConfigurableEnvironment environment) {

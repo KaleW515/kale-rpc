@@ -12,8 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 import java.util.Properties;
 
-import static com.kalew515.config.constants.RpcConfigConstants.RPC_CONFIG_CENTER_NAME;
-import static com.kalew515.config.constants.RpcConfigConstants.SERVER_PORT;
+import static com.kalew515.config.constants.RpcConfigConstants.*;
 import static com.kalew515.config.constants.defaultconfig.RpcDefaultConfig.DEFAULT_CONFIG_CENTER;
 import static com.kalew515.config.constants.defaultconfig.RpcServerDefaultConfig.DEFAULT_TRANSPORTER_SERVER_PORT;
 
@@ -30,7 +29,10 @@ public class ConfigCenterImpl implements ConfigCenter {
         this.configContainerName = getConfigCenterName(configCenterName);
         this.configContainer = ExtensionLoader.getExtensionLoader(ConfigContainer.class)
                                               .getExtension(configContainerName);
-        doConfigInit(ymlProperties);
+        Object useRemoteConfig = ymlProperties.get(RPC_CONFIG_CENTER_USE_REMOTE_CONFIG);
+        if (useRemoteConfig == null || !useRemoteConfig.equals("true")) {
+            doConfigInit(ymlProperties);
+        }
     }
 
     public ConfigCenterImpl (String configContainerName) {
