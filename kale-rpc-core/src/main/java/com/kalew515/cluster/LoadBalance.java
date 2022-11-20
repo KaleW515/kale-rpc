@@ -1,7 +1,7 @@
 package com.kalew515.cluster;
 
 import com.kalew515.common.extension.SPI;
-import com.kalew515.exchange.impl.RpcRequest;
+import com.kalew515.exchange.messages.RpcRequest;
 
 import java.util.List;
 import java.util.Set;

@@ -2,7 +2,7 @@ package com.kalew515.cluster.loadbalancer;
 
 import com.kalew515.cluster.AbstractLoadBalance;
 import com.kalew515.common.factory.SingletonFactory;
-import com.kalew515.exchange.impl.RpcRequest;
+import com.kalew515.exchange.messages.RpcRequest;
 import com.kalew515.monitor.MonitorCenter;
 import com.kalew515.monitor.MonitorCenterImpl;
 

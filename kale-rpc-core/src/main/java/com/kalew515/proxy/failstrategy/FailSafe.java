@@ -1,6 +1,6 @@
 package com.kalew515.proxy.failstrategy;
 
-import com.kalew515.exchange.impl.RpcResponse;
+import com.kalew515.exchange.messages.RpcResponse;
 import com.kalew515.proxy.FailStrategy;
 import com.kalew515.proxy.context.RequestContext;
 

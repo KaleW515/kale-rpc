@@ -6,7 +6,7 @@ import com.kalew515.common.extension.ExtensionLoader;
 import com.kalew515.common.factory.SingletonFactory;
 import com.kalew515.config.ConfigCenter;
 import com.kalew515.config.ConfigCenterImpl;
-import com.kalew515.exchange.impl.RpcRequest;
+import com.kalew515.exchange.messages.RpcRequest;
 import com.kalew515.registry.ServiceDiscovery;
 import com.kalew515.utils.CollectionUtil;
 import com.kalew515.utils.CuratorUtil;

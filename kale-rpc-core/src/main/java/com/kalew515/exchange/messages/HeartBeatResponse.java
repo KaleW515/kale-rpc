@@ -1,4 +1,4 @@
-package com.kalew515.exchange.impl;
+package com.kalew515.exchange.messages;
 
 import com.kalew515.exchange.Message;
 
@@ -11,12 +11,12 @@ public class HeartBeatResponse extends Message implements Serializable {
     public HeartBeatResponse () {
     }
 
-    public HeartBeatResponse (Integer requestId) {
+    public HeartBeatResponse (Long requestId) {
         super.setRequestId(requestId);
     }
 
     @Override
-    public int getMessageType () {
+    public Integer getMessageType () {
         return HEARTBEAT_TYPE_RESPONSE;
     }
 

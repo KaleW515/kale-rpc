@@ -1,6 +1,6 @@
 package com.kalew515.cluster;
 
-import com.kalew515.exchange.impl.RpcRequest;
+import com.kalew515.exchange.messages.RpcRequest;
 import com.kalew515.utils.CollectionUtil;
 
 import java.util.List;

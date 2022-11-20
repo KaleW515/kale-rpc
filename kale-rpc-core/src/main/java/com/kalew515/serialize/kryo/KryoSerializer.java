@@ -4,8 +4,8 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.kalew515.common.exception.SerializeException;
-import com.kalew515.exchange.impl.RpcRequest;
-import com.kalew515.exchange.impl.RpcResponse;
+import com.kalew515.exchange.messages.RpcRequest;
+import com.kalew515.exchange.messages.RpcResponse;
 import com.kalew515.serialize.Serializer;
 
 import java.io.ByteArrayInputStream;

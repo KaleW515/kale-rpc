@@ -1,4 +1,4 @@
-package com.kalew515.exchange.impl;
+package com.kalew515.exchange.messages;
 
 import com.kalew515.common.enums.RpcResponseStatusEnum;
 import com.kalew515.exchange.Message;
@@ -7,26 +7,23 @@ import java.io.Serializable;
 
 public class RpcResponse<T> extends Message implements Serializable {
 
-    // response message
     private String message;
 
-    // response code
     private Integer code;
 
-    // body
     private T data;
 
     public RpcResponse () {
     }
 
-    public RpcResponse (Integer requestId, String message, Integer code, T data) {
+    public RpcResponse (Long requestId, String message, Integer code, T data) {
         super.setRequestId(requestId);
         this.message = message;
         this.code = code;
         this.data = data;
     }
 
-    public static <T> RpcResponse<T> success (T data, int requestId) {
+    public static <T> RpcResponse<T> success (T data, Long requestId) {
         RpcResponse<T> rpcResponse = new RpcResponse<>();
         rpcResponse.setCode(RpcResponseStatusEnum.SUCCESS.getCode());
         rpcResponse.setMessage(RpcResponseStatusEnum.SUCCESS.getMessage());
@@ -45,7 +42,7 @@ public class RpcResponse<T> extends Message implements Serializable {
     }
 
     @Override
-    public int getMessageType () {
+    public Integer getMessageType () {
         return RPC_MESSAGE_TYPE_RESPONSE;
     }
 

@@ -1,7 +1,7 @@
 package com.kalew515.remoting.handler;
 
 import com.kalew515.common.factory.SingletonFactory;
-import com.kalew515.exchange.impl.RpcRequest;
+import com.kalew515.exchange.messages.RpcRequest;
 import com.kalew515.monitor.MonitorCenter;
 import com.kalew515.monitor.MonitorCenterImpl;
 import io.netty.channel.ChannelDuplexHandler;

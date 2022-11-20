@@ -1,6 +1,6 @@
 package com.kalew515.proxy.context;
 
-import com.kalew515.exchange.impl.RpcRequest;
+import com.kalew515.exchange.messages.RpcRequest;
 import com.kalew515.transport.RpcClient;
 
 import java.net.InetSocketAddress;

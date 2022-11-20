@@ -1,6 +1,6 @@
 package com.kalew515.transport.netty.client;
 
-import com.kalew515.exchange.impl.RpcResponse;
+import com.kalew515.exchange.messages.RpcResponse;
 
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -8,9 +8,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class UnprocessedRequests {
 
-    private static final Map<Integer, CompletableFuture<RpcResponse<?>>> UNPROCESSED_RESPONSE_FUTURES = new ConcurrentHashMap<>();
+    private static final Map<Long, CompletableFuture<RpcResponse<?>>> UNPROCESSED_RESPONSE_FUTURES = new ConcurrentHashMap<>();
 
-    public void put (int requestId, CompletableFuture<RpcResponse<?>> future) {
+    public void put (Long requestId, CompletableFuture<RpcResponse<?>> future) {
         UNPROCESSED_RESPONSE_FUTURES.put(requestId, future);
     }
 

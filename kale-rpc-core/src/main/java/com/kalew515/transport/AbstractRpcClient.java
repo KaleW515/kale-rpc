@@ -3,7 +3,7 @@ package com.kalew515.transport;
 import com.kalew515.common.enums.CompressEnum;
 import com.kalew515.common.enums.SerializerEnum;
 import com.kalew515.common.factory.SingletonFactory;
-import com.kalew515.exchange.impl.RpcRequest;
+import com.kalew515.exchange.messages.RpcRequest;
 import com.kalew515.registry.RegisterCenter;
 import com.kalew515.registry.RegisterCenterImpl;
 import com.kalew515.utils.StringUtils;

@@ -7,12 +7,12 @@ import com.kalew515.common.factory.SingletonFactory;
 import com.kalew515.config.ConfigCenter;
 import com.kalew515.config.ConfigCenterImpl;
 import com.kalew515.config.RpcServiceConfig;
-import com.kalew515.exchange.impl.RpcRequest;
-import com.kalew515.exchange.impl.RpcResponse;
+import com.kalew515.exchange.messages.RpcRequest;
+import com.kalew515.exchange.messages.RpcResponse;
 import com.kalew515.proxy.context.RequestContext;
 import com.kalew515.transport.RpcClient;
 import com.kalew515.transport.netty.client.NettyRpcClient;
-import com.kalew515.utils.RequestIdGenerator;
+import com.kalew515.utils.RequestIdGeneratorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,7 +68,7 @@ public class RpcClientProxy implements InvocationHandler {
     @Override
     public Object invoke (Object proxy, Method method, Object[] args) {
         logger.info("invoked method: [{}]", method.getName());
-        RpcRequest rpcRequest = new RpcRequest(RequestIdGenerator.getRequestId(),
+        RpcRequest rpcRequest = new RpcRequest(RequestIdGeneratorUtils.getRequestId(),
                                                method.getDeclaringClass().getName(),
                                                method.getName(), args, method.getParameterTypes(),
                                                rpcServiceConfig.getVersion(),
@@ -83,7 +83,7 @@ public class RpcClientProxy implements InvocationHandler {
             try {
                 rpcResponse = completableFuture.get(timeout, TimeUnit.MILLISECONDS);
             } catch (TimeoutException | ExecutionException e) {
-                logger.info("request fail, fail strategy triggered");
+                logger.info("request failed, fail strategy triggered");
                 rpcResponse = this.failStrategy.strategy(
                         new RequestContext(rpcRequestTransport, rpcRequest,
                                            inetSocketAddress,

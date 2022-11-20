@@ -3,9 +3,9 @@ package com.kalew515.remoting.handler;
 import com.kalew515.common.enums.RpcResponseStatusEnum;
 import com.kalew515.common.factory.SingletonFactory;
 import com.kalew515.exchange.Message;
-import com.kalew515.exchange.impl.HeartBeatResponse;
-import com.kalew515.exchange.impl.RpcRequest;
-import com.kalew515.exchange.impl.RpcResponse;
+import com.kalew515.exchange.messages.HeartBeatResponse;
+import com.kalew515.exchange.messages.RpcRequest;
+import com.kalew515.exchange.messages.RpcResponse;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -54,7 +54,7 @@ public class NettyRpcServerHandler extends ChannelInboundHandlerAdapter {
                     }
                 }
                 response.setRequestId(((Message) msg).getRequestId());
-                response.setCodec(((Message) msg).getCodec());
+                response.setSerializer(((Message) msg).getSerializer());
                 response.setCompress(((Message) msg).getCompress());
                 ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
             }

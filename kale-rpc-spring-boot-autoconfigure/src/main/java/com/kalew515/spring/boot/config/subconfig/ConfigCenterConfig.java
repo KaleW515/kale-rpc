@@ -23,4 +23,12 @@ public class ConfigCenterConfig {
     public void setAddress (String address) {
         this.address = address;
     }
+
+    public Boolean getUseRemoteConfig () {
+        return useRemoteConfig;
+    }
+
+    public void setUseRemoteConfig (Boolean useRemoteConfig) {
+        this.useRemoteConfig = useRemoteConfig;
+    }
 }

@@ -3,7 +3,7 @@ package com.kalew515.remoting.handler;
 import com.kalew515.common.enums.CompressEnum;
 import com.kalew515.common.enums.SerializerEnum;
 import com.kalew515.exchange.Message;
-import com.kalew515.exchange.impl.HeartBeatRequest;
+import com.kalew515.exchange.messages.HeartBeatRequest;
 import io.netty.channel.*;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -24,7 +24,7 @@ public class RpcClientIdleHandler extends ChannelDuplexHandler {
                 Channel channel = ctx.channel();
                 HeartBeatRequest heartBeatRequest = new HeartBeatRequest();
                 heartBeatRequest.setMessageType(Message.HEARTBEAT_TYPE_REQUEST);
-                heartBeatRequest.setCodec(SerializerEnum.KRYO.getCode());
+                heartBeatRequest.setSerializer(SerializerEnum.KRYO.getCode());
                 heartBeatRequest.setCompress(CompressEnum.GZIP.getCode());
                 channel.writeAndFlush(heartBeatRequest)
                        .addListener(ChannelFutureListener.CLOSE_ON_FAILURE);

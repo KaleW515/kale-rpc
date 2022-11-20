@@ -1,8 +1,8 @@
 package com.kalew515.transport;
 
 import com.kalew515.common.extension.SPI;
-import com.kalew515.exchange.impl.RpcRequest;
-import com.kalew515.exchange.impl.RpcResponse;
+import com.kalew515.exchange.messages.RpcRequest;
+import com.kalew515.exchange.messages.RpcResponse;
 
 import java.net.InetSocketAddress;
 import java.util.Set;

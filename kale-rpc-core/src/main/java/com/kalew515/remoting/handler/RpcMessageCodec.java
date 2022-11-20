@@ -6,10 +6,10 @@ import com.kalew515.common.extension.ExtensionLoader;
 import com.kalew515.compress.Compress;
 import com.kalew515.exchange.Message;
 import com.kalew515.exchange.constants.RpcMessageConstants;
-import com.kalew515.exchange.impl.HeartBeatRequest;
-import com.kalew515.exchange.impl.HeartBeatResponse;
-import com.kalew515.exchange.impl.RpcRequest;
-import com.kalew515.exchange.impl.RpcResponse;
+import com.kalew515.exchange.messages.HeartBeatRequest;
+import com.kalew515.exchange.messages.HeartBeatResponse;
+import com.kalew515.exchange.messages.RpcRequest;
+import com.kalew515.exchange.messages.RpcResponse;
 import com.kalew515.serialize.Serializer;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler;
@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.kalew515.exchange.constants.RpcMessageConstants.MAGIC_NUMBER;
+import static com.kalew515.exchange.constants.RpcMessageConstants.VERSION;
 
 @ChannelHandler.Sharable
 public class RpcMessageCodec extends MessageToMessageCodec<ByteBuf, Message> {
@@ -36,24 +37,24 @@ public class RpcMessageCodec extends MessageToMessageCodec<ByteBuf, Message> {
             // 4 byte magic number
             byteBuf.writeBytes(MAGIC_NUMBER);
             // 1 byte version
-            byteBuf.writeByte(RpcMessageConstants.VERSION);
+            byteBuf.writeByte(VERSION);
             // make 4 byte for the length
             byteBuf.writerIndex(byteBuf.writerIndex() + 4);
             // 1 byte message type
             int messageType = msg.getMessageType();
             byteBuf.writeByte(messageType);
             // 1 byte serializer type
-            byteBuf.writeByte(msg.getCodec());
+            byteBuf.writeByte(msg.getSerializer());
             // 1 byte compress type
             byteBuf.writeByte(msg.getCompress());
-            // 4 byte request id
-            byteBuf.writeInt(msg.getRequestId());
+            // 8 byte request id
+            byteBuf.writeLong(msg.getRequestId());
 
             byte[] body = null;
             int fullLength = RpcMessageConstants.HEAD_LENGTH;
             if (messageType != Message.HEARTBEAT_TYPE_REQUEST && messageType != Message.HEARTBEAT_TYPE_RESPONSE) {
-                String name = SerializerEnum.getName(msg.getCodec());
-                logger.info("codec name: [{}] ", name);
+                String name = SerializerEnum.getName(msg.getSerializer());
+                logger.info("serializer name: [{}] ", name);
                 Serializer serializer = ExtensionLoader.getExtensionLoader(Serializer.class)
                                                        .getExtension(name);
                 body = serializer.serialize(msg);
@@ -100,18 +101,18 @@ public class RpcMessageCodec extends MessageToMessageCodec<ByteBuf, Message> {
         byte messageType = in.readByte();
         byte codecType = in.readByte();
         byte compressType = in.readByte();
-        int requestId = in.readInt();
+        long requestId = in.readLong();
         Message message = null;
         if (messageType == Message.HEARTBEAT_TYPE_REQUEST) {
             message = new HeartBeatRequest();
-            message.setCodec(codecType);
+            message.setSerializer(codecType);
             message.setMessageType(Message.HEARTBEAT_TYPE_REQUEST);
             message.setRequestId(requestId);
             message.setCompress(compressType);
             return message;
         } else if (messageType == Message.HEARTBEAT_TYPE_RESPONSE) {
             message = new HeartBeatResponse();
-            message.setCodec(codecType);
+            message.setSerializer(codecType);
             message.setMessageType(Message.HEARTBEAT_TYPE_RESPONSE);
             message.setRequestId(requestId);
             message.setCompress(compressType);
@@ -132,14 +133,14 @@ public class RpcMessageCodec extends MessageToMessageCodec<ByteBuf, Message> {
                                                    .getExtension(serializerName);
             if (messageType == Message.RPC_MESSAGE_TYPE_REQUEST) {
                 RpcRequest deserialize = serializer.deserialize(bs, RpcRequest.class);
-                deserialize.setCodec(codecType);
+                deserialize.setSerializer(codecType);
                 deserialize.setMessageType(Message.RPC_MESSAGE_TYPE_REQUEST);
                 deserialize.setRequestId(requestId);
                 deserialize.setCompress(compressType);
                 return deserialize;
             } else {
                 RpcResponse<?> deserialize = serializer.deserialize(bs, RpcResponse.class);
-                deserialize.setCodec(codecType);
+                deserialize.setSerializer(codecType);
                 deserialize.setMessageType(Message.RPC_MESSAGE_TYPE_RESPONSE);
                 deserialize.setRequestId(requestId);
                 deserialize.setCompress(compressType);
@@ -163,7 +164,7 @@ public class RpcMessageCodec extends MessageToMessageCodec<ByteBuf, Message> {
 
     private void checkVersion (ByteBuf in) {
         byte version = in.readByte();
-        if (version != RpcMessageConstants.VERSION) {
+        if (version != VERSION) {
             throw new IllegalArgumentException("version isn't compatible " + version);
         }
     }

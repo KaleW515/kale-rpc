@@ -6,7 +6,7 @@ import com.kalew515.common.factory.SingletonFactory;
 import com.kalew515.config.ConfigCenter;
 import com.kalew515.config.ConfigCenterImpl;
 import com.kalew515.config.RpcServiceConfig;
-import com.kalew515.exchange.impl.RpcRequest;
+import com.kalew515.exchange.messages.RpcRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

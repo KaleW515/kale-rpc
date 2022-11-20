@@ -3,8 +3,8 @@ package com.kalew515.transport.netty.client;
 import com.kalew515.common.factory.SingletonFactory;
 import com.kalew515.config.CustomShutdownHook;
 import com.kalew515.exchange.Message;
-import com.kalew515.exchange.impl.RpcRequest;
-import com.kalew515.exchange.impl.RpcResponse;
+import com.kalew515.exchange.messages.RpcRequest;
+import com.kalew515.exchange.messages.RpcResponse;
 import com.kalew515.remoting.handler.NettyRpcClientHandler;
 import com.kalew515.remoting.handler.ProtocolFrameDecoder;
 import com.kalew515.remoting.handler.RpcClientIdleHandler;
@@ -74,7 +74,7 @@ public class NettyRpcClient extends AbstractRpcClient {
         Channel channel = getChannel(inetSocketAddress);
         if (channel.isActive()) {
             unprocessedRequests.put(rpcRequest.getRequestId(), resultFuture);
-            rpcRequest.setCodec(this.serializationType.getCode());
+            rpcRequest.setSerializer(this.serializationType.getCode());
             rpcRequest.setMessageType(Message.RPC_MESSAGE_TYPE_REQUEST);
             rpcRequest.setCompress(this.compressType.getCode());
             ChannelFuture channelFuture = channel.writeAndFlush(rpcRequest);

@@ -2,8 +2,8 @@ package com.kalew515.remoting.handler;
 
 import com.kalew515.common.factory.SingletonFactory;
 import com.kalew515.exchange.Message;
-import com.kalew515.exchange.impl.HeartBeatResponse;
-import com.kalew515.exchange.impl.RpcResponse;
+import com.kalew515.exchange.messages.HeartBeatResponse;
+import com.kalew515.exchange.messages.RpcResponse;
 import com.kalew515.transport.netty.client.UnprocessedRequests;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
