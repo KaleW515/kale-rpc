@@ -1,5 +1,6 @@
 package com.kalew515.proxy;
 
+import com.kalew515.cluster.FailStrategy;
 import com.kalew515.cluster.LoadBalance;
 import com.kalew515.common.enums.RpcErrorMessageEnum;
 import com.kalew515.common.exception.RpcException;
@@ -12,7 +13,7 @@ import com.kalew515.exchange.IdGeneratorCenter;
 import com.kalew515.exchange.IdGeneratorCenterImpl;
 import com.kalew515.exchange.messages.RpcRequest;
 import com.kalew515.exchange.messages.RpcResponse;
-import com.kalew515.proxy.context.RequestContext;
+import com.kalew515.cluster.context.RequestContext;
 import com.kalew515.remoting.transport.RpcClient;
 import com.kalew515.utils.NetUtils;
 import com.kalew515.utils.StringUtils;

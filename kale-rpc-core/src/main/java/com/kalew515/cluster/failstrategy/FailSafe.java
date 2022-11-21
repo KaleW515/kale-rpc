@@ -1,8 +1,8 @@
-package com.kalew515.proxy.failstrategy;
+package com.kalew515.cluster.failstrategy;
 
 import com.kalew515.exchange.messages.RpcResponse;
-import com.kalew515.proxy.FailStrategy;
-import com.kalew515.proxy.context.RequestContext;
+import com.kalew515.cluster.FailStrategy;
+import com.kalew515.cluster.context.RequestContext;
 
 import static com.kalew515.common.enums.RpcResponseStatusEnum.FAIL_SAFE;
 

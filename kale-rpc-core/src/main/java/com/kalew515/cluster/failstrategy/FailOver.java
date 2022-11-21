@@ -1,4 +1,4 @@
-package com.kalew515.proxy.failstrategy;
+package com.kalew515.cluster.failstrategy;
 
 import com.kalew515.cluster.LoadBalance;
 import com.kalew515.common.exception.RpcException;
@@ -8,9 +8,9 @@ import com.kalew515.config.ConfigCenter;
 import com.kalew515.config.ConfigCenterImpl;
 import com.kalew515.config.constants.RpcConfigConstants;
 import com.kalew515.exchange.messages.RpcResponse;
-import com.kalew515.proxy.FailStrategy;
+import com.kalew515.cluster.FailStrategy;
 import com.kalew515.proxy.RpcClientProxy;
-import com.kalew515.proxy.context.RequestContext;
+import com.kalew515.cluster.context.RequestContext;
 import com.kalew515.remoting.transport.RpcClient;
 import com.kalew515.utils.NetUtils;
 import org.slf4j.Logger;

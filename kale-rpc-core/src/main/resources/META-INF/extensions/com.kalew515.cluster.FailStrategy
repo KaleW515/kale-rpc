@@ -1,0 +1,3 @@
+fail-fast=com.kalew515.cluster.failstrategy.FailFast
+fail-over=com.kalew515.cluster.failstrategy.FailOver
+fail-safe=com.kalew515.cluster.failstrategy.FailSafe
