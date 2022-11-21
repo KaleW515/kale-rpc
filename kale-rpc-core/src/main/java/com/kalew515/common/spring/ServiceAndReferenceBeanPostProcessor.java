@@ -18,7 +18,7 @@ import org.springframework.context.ApplicationContextAware;
 import javax.annotation.PostConstruct;
 import java.lang.reflect.Field;
 
-public class SpringBeanPostProcessor implements BeanPostProcessor, ApplicationContextAware {
+public class ServiceAndReferenceBeanPostProcessor implements BeanPostProcessor, ApplicationContextAware {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -28,7 +28,7 @@ public class SpringBeanPostProcessor implements BeanPostProcessor, ApplicationCo
 
     private ApplicationContext context;
 
-    public SpringBeanPostProcessor () {
+    public ServiceAndReferenceBeanPostProcessor () {
     }
 
     @PostConstruct

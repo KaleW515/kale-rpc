@@ -42,7 +42,7 @@ public class KaleRpcComponentScanRegistrar implements ImportBeanDefinitionRegist
         for (String packageToScan : packagesToScan) {
             rpcServiceScanned += rpcServiceScanner.scan(packageToScan);
         }
-        logger.info("rpcServiceScanner扫描的数量 [{}]", rpcServiceScanned);
+        logger.info("rpcServiceScanner has scanned: [{}]", rpcServiceScanned);
     }
 
     private Set<String> getPackagesToScan (AnnotationMetadata metadata) {

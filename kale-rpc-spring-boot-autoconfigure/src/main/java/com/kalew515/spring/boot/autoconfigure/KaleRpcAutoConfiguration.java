@@ -1,6 +1,6 @@
 package com.kalew515.spring.boot.autoconfigure;
 
-import com.kalew515.common.spring.SpringBeanPostProcessor;
+import com.kalew515.common.spring.ServiceAndReferenceBeanPostProcessor;
 import com.kalew515.spring.boot.config.KaleRpcProperties;
 import com.kalew515.spring.boot.util.KaleRpcUtils;
 import com.kalew515.remoting.transport.RpcClientFactory;
@@ -28,7 +28,7 @@ public class KaleRpcAutoConfiguration {
 
     @Bean
     @ConditionalOnBean(value = {RpcClientFactory.class, RpcServerFactory.class})
-    public SpringBeanPostProcessor springBeanPostProcessor () {
-        return new SpringBeanPostProcessor();
+    public ServiceAndReferenceBeanPostProcessor serviceAndReferenceBeanPostProcessor () {
+        return new ServiceAndReferenceBeanPostProcessor();
     }
 }
