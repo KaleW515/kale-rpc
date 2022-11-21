@@ -29,13 +29,18 @@ public class RpcConfigConstants {
     public static final String RPC_CONFIG_CENTER_NAME = "kale-rpc.config-center.name";
     public static final String RPC_CONFIG_CENTER_USE_REMOTE_CONFIG = "kale-rpc.config-center" +
             ".use-remote-config";
+
+    public static final String RPC_ID_GENERATOR_CENTER_NAME = "kale-rpc.id-generator-center.name";
+
+    public static final String RPC_ID_GENERATOR_CENTER_ADDRESS = "kale-rpc.id-generator-center" +
+            ".address";
     private static volatile Map<String, String> keys;
 
     public static Map<String, String> getConfigMap () {
         if (keys == null || keys.size() == 0) {
             synchronized (RpcConfigConstants.class) {
                 if (keys == null || keys.size() == 0) {
-                    keys = new ConcurrentHashMap<>(16);
+                    keys = new ConcurrentHashMap<>(32);
                     keys.put(SERVER_HOST, NetUtils.getLocalHost());
                     keys.put(SERVER_PORT, DEFAULT_TRANSPORTER_SERVER_PORT.toString());
                     keys.put(TRANSPORTER, DEFAULT_TRANSPORTER);
@@ -52,6 +57,8 @@ public class RpcConfigConstants {
                     keys.put(RPC_LOAD_BALANCER, DEFAULT_LOAD_BALANCER);
                     keys.put(RPC_TIMEOUT, String.valueOf(DEFAULT_TIMEOUT));
                     keys.put(FAIL_STRATEGY, DEFAULT_FAIL_STRATEGY);
+                    keys.put(RPC_ID_GENERATOR_CENTER_NAME, DEFAULT_ID_GENERATOR_CENTER);
+                    keys.put(RPC_ID_GENERATOR_CENTER_ADDRESS, "");
                 }
             }
         }

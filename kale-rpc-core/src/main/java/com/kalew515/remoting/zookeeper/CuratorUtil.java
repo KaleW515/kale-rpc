@@ -1,4 +1,4 @@
-package com.kalew515.utils;
+package com.kalew515.remoting.zookeeper;
 
 import com.kalew515.config.CustomShutdownHook;
 import org.apache.curator.RetryPolicy;

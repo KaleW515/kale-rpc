@@ -10,6 +10,8 @@ public class RpcDefaultConfig {
 
     public static final String DEFAULT_MONITOR_CENTER = "zk";
 
+    public static final String DEFAULT_ID_GENERATOR_CENTER = "local";
+
     public static final String DEFAULT_ZK_ADDRESS = "127.0.0.1:2181";
 
     public static final String LOCALHOST_VALUE = "127.0.0.1";

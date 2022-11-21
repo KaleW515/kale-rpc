@@ -1,4 +1,4 @@
-package com.kalew515.remoting.handler;
+package com.kalew515.remoting.transport.netty.handler;
 
 import com.kalew515.common.enums.CompressEnum;
 import com.kalew515.common.enums.SerializerEnum;

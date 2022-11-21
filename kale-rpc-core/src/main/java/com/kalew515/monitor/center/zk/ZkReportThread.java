@@ -10,7 +10,7 @@ import com.kalew515.common.mq.message.DisconnectionMessage;
 import com.kalew515.common.mq.message.ReportRpcMessage;
 import com.kalew515.config.ConfigCenter;
 import com.kalew515.config.ConfigCenterImpl;
-import com.kalew515.utils.CuratorUtil;
+import com.kalew515.remoting.zookeeper.CuratorUtil;
 import org.apache.curator.framework.CuratorFramework;
 
 import static com.kalew515.config.constants.RpcConfigConstants.RPC_MONITOR_CENTER_ADDRESS;

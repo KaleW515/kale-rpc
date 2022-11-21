@@ -7,7 +7,7 @@ import com.kalew515.config.RpcServiceConfig;
 import com.kalew515.proxy.RpcClientProxy;
 import com.kalew515.registry.RegisterCenter;
 import com.kalew515.registry.RegisterCenterImpl;
-import com.kalew515.transport.RpcClient;
+import com.kalew515.remoting.transport.RpcClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;

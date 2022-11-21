@@ -1,7 +1,7 @@
 package com.kalew515.proxy;
 
 import com.kalew515.config.RpcServiceConfig;
-import com.kalew515.transport.RpcClientFactory;
+import com.kalew515.remoting.transport.RpcClientFactory;
 
 public class RpcClientProxyFactory {
 

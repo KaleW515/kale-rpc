@@ -3,7 +3,7 @@ package com.kalew515.common.spring.listener;
 import com.kalew515.common.annotation.RpcService;
 import com.kalew515.common.enums.RpcServerStateEnum;
 import com.kalew515.common.spring.event.RpcServerStartedEvent;
-import com.kalew515.transport.RpcServer;
+import com.kalew515.remoting.transport.RpcServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;

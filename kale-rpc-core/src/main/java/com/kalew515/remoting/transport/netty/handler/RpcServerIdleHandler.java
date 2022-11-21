@@ -1,4 +1,4 @@
-package com.kalew515.remoting.handler;
+package com.kalew515.remoting.transport.netty.handler;
 
 import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandler;

@@ -4,7 +4,7 @@ import com.kalew515.common.factory.SingletonFactory;
 import com.kalew515.config.ConfigCenter;
 import com.kalew515.config.ConfigCenterImpl;
 import com.kalew515.monitor.MonitorObtain;
-import com.kalew515.utils.CuratorUtil;
+import com.kalew515.remoting.zookeeper.CuratorUtil;
 import org.apache.curator.framework.CuratorFramework;
 
 import java.util.List;
@@ -30,8 +30,8 @@ public class ZkMonitorObtainImpl implements MonitorObtain {
     @Override
     public Integer getServiceCallTimes (String serviceName, String remoteUtl) {
         CuratorFramework zkClient = CuratorUtil.getZkClient(monitorCenterAddress);
-        return CuratorUtil.getDeviceServiceCallTimes(zkClient,
-                                                     serviceName,
-                                                     remoteUtl);
+        return CuratorUtil.getServiceCallTimes(zkClient,
+                                               serviceName,
+                                               remoteUtl);
     }
 }

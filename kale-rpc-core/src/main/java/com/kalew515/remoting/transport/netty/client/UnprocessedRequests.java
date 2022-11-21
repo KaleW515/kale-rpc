@@ -1,4 +1,4 @@
-package com.kalew515.transport.netty.client;
+package com.kalew515.remoting.transport.netty.client;
 
 import com.kalew515.exchange.messages.RpcResponse;
 

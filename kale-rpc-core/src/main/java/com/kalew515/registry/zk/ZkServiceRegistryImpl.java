@@ -4,7 +4,7 @@ import com.kalew515.common.factory.SingletonFactory;
 import com.kalew515.config.ConfigCenter;
 import com.kalew515.config.ConfigCenterImpl;
 import com.kalew515.registry.ServiceRegistry;
-import com.kalew515.utils.CuratorUtil;
+import com.kalew515.remoting.zookeeper.CuratorUtil;
 import org.apache.curator.framework.CuratorFramework;
 
 import java.net.InetSocketAddress;

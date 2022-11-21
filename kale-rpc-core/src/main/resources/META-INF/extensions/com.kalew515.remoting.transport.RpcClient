@@ -1,1 +1,1 @@
-netty=com.kalew515.transport.netty.client.NettyRpcClient
+netty=com.kalew515.remoting.transport.netty.client.NettyRpcClient

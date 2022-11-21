@@ -25,6 +25,22 @@ public class NetUtils {
     private static volatile String HOST_ADDRESS;
     private static volatile InetAddress LOCAL_ADDRESS = null;
 
+    public static InetSocketAddress stringToInetSocketAddress (String targetServiceUrl) {
+        String[] socketAddressArray = targetServiceUrl.split(":");
+        String host = socketAddressArray[0];
+        int port = Integer.parseInt(socketAddressArray[1]);
+        return new InetSocketAddress(host, port);
+    }
+
+    public static Boolean inetSocketAddressIsEqualsString (InetSocketAddress inetSocketAddress,
+                                                           String targetServiceUrl) {
+        if (inetSocketAddress == null || StringUtils.isBlank(targetServiceUrl)) {
+            return false;
+        }
+        String stringInet = inetSocketAddress.getHostName() + ":" + inetSocketAddress.getPort();
+        return stringInet.equals(targetServiceUrl);
+    }
+
     public static String getLocalHost () {
         if (HOST_ADDRESS != null) {
             return HOST_ADDRESS;

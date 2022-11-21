@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -74,8 +75,8 @@ public class RegisterCenterImpl implements RegisterCenter {
     }
 
     @Override
-    public InetSocketAddress lookupService (RpcRequest rpcRequest, Set<String> blackList) {
-        return this.serviceDiscovery.lookupService(rpcRequest, blackList);
+    public List<String> lookupService (RpcRequest rpcRequest) {
+        return this.serviceDiscovery.lookupService(rpcRequest);
     }
 
     private void addService (RpcServiceConfig<?> rpcServiceConfig) {

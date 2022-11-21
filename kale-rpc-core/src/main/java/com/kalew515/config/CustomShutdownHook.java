@@ -1,7 +1,7 @@
 package com.kalew515.config;
 
 import com.kalew515.common.factory.SingletonFactory;
-import com.kalew515.utils.CuratorUtil;
+import com.kalew515.remoting.zookeeper.CuratorUtil;
 import com.kalew515.utils.ThreadPoolFactoryUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +46,7 @@ public class CustomShutdownHook {
                 InetSocketAddress inetSocketAddress =
                         new InetSocketAddress(InetAddress.getLocalHost()
                                                          .getHostAddress(), port);
+                logger.info("do curator clear registry");
                 CuratorUtil.clearRegistry(CuratorUtil.getZkClient(address), inetSocketAddress);
             } catch (UnknownHostException ignored) {
             }

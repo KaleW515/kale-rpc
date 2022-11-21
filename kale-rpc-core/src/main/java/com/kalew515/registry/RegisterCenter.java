@@ -4,6 +4,7 @@ import com.kalew515.config.RpcServiceConfig;
 import com.kalew515.exchange.messages.RpcRequest;
 
 import java.net.InetSocketAddress;
+import java.util.List;
 import java.util.Set;
 
 public interface RegisterCenter {
@@ -41,9 +42,8 @@ public interface RegisterCenter {
      * lookup service from register center
      *
      * @param rpcRequest
-     * @param blackList
      * @return
      */
-    InetSocketAddress lookupService (RpcRequest rpcRequest, Set<String> blackList);
+    List<String> lookupService (RpcRequest rpcRequest);
 
 }

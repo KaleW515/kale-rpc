@@ -7,26 +7,22 @@ import com.kalew515.monitor.MonitorCenter;
 import com.kalew515.monitor.MonitorCenterImpl;
 
 import java.util.List;
-import java.util.Set;
 
 public class MinCallLoadBalance extends AbstractLoadBalance {
 
     @Override
-    protected String doSelect (List<String> serviceAddresses, RpcRequest rpcRequest,
-                               Set<String> blackList) {
+    protected String doSelect (List<String> serviceAddresses, RpcRequest rpcRequest) {
         MonitorCenter monitorCenter = SingletonFactory.getInstance(MonitorCenterImpl.class);
 
         int min = Integer.MAX_VALUE;
         String url = null;
         for (String serverUrl : serviceAddresses) {
-            if (!blackList.contains(serverUrl)) {
-                Integer serviceCallTimes = monitorCenter.getServiceCallTimes(
-                        rpcRequest.getRpcServiceName(), serverUrl);
+            Integer serviceCallTimes = monitorCenter.getServiceCallTimes(
+                    rpcRequest.getRpcServiceName(), serverUrl);
 
-                if (serviceCallTimes < min) {
-                    min = serviceCallTimes;
-                    url = serverUrl;
-                }
+            if (serviceCallTimes < min) {
+                min = serviceCallTimes;
+                url = serverUrl;
             }
         }
         return url;

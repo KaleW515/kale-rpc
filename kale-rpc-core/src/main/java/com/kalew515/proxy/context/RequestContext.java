@@ -1,7 +1,7 @@
 package com.kalew515.proxy.context;
 
 import com.kalew515.exchange.messages.RpcRequest;
-import com.kalew515.transport.RpcClient;
+import com.kalew515.remoting.transport.RpcClient;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.TimeUnit;

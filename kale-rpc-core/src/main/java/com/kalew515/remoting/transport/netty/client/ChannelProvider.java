@@ -1,4 +1,4 @@
-package com.kalew515.transport.netty.client;
+package com.kalew515.remoting.transport.netty.client;
 
 import io.netty.channel.Channel;
 import org.slf4j.Logger;

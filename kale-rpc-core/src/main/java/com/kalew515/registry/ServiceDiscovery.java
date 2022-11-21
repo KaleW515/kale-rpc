@@ -4,6 +4,7 @@ import com.kalew515.common.extension.SPI;
 import com.kalew515.exchange.messages.RpcRequest;
 
 import java.net.InetSocketAddress;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -12,6 +13,6 @@ import java.util.Set;
 @SPI
 public interface ServiceDiscovery {
 
-    InetSocketAddress lookupService (RpcRequest rpcRequest, Set<String> blackList);
+    List<String> lookupService (RpcRequest rpcRequest);
 
 }
