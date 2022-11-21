@@ -14,8 +14,6 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.TimeUnit;
 
@@ -30,7 +28,6 @@ public class NettyRpcServer extends AbstractRpcServer {
     private static final RpcServerIdleHandler RPC_SERVER_IDLE_HANDLER = new RpcServerIdleHandler();
     private static final RpcServerMonitorHandler RPC_SERVER_MONITOR_HANDLER =
             new RpcServerMonitorHandler();
-    private final Logger logger = LoggerFactory.getLogger(getClass());
     private NioEventLoopGroup bossGroup;
 
     private NioEventLoopGroup workerGroup;

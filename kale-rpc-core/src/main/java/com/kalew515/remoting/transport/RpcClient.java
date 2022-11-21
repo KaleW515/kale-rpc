@@ -5,6 +5,7 @@ import com.kalew515.exchange.messages.RpcRequest;
 import com.kalew515.exchange.messages.RpcResponse;
 
 import java.net.InetSocketAddress;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
@@ -27,10 +28,9 @@ public interface RpcClient {
      * get service address from register center
      *
      * @param rpcRequest
-     * @param blackList
      * @return
      */
-    InetSocketAddress getServiceAddress (RpcRequest rpcRequest, Set<String> blackList);
+    List<String> getServiceAddress (RpcRequest rpcRequest);
 
     /**
      * set serializer and compress

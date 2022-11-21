@@ -18,8 +18,6 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.timeout.IdleStateHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.CompletableFuture;
@@ -35,7 +33,6 @@ public class NettyRpcClient extends AbstractRpcClient {
             new NettyRpcClientHandler();
     private static final RpcClientIdleHandler RPC_CLIENT_IDLE_HANDLER = new RpcClientIdleHandler();
     private static final LoggingHandler LOGGING_HANDLER = new LoggingHandler(LogLevel.DEBUG);
-    private final Logger logger = LoggerFactory.getLogger(getClass());
     private final UnprocessedRequests unprocessedRequests;
     private final ChannelProvider channelProvider;
     private final Bootstrap bootstrap;
@@ -74,7 +71,7 @@ public class NettyRpcClient extends AbstractRpcClient {
         Channel channel = getChannel(inetSocketAddress);
         if (channel.isActive()) {
             unprocessedRequests.put(rpcRequest.getRequestId(), resultFuture);
-            rpcRequest.setSerializer(this.serializationType.getCode());
+            rpcRequest.setSerializer(this.serializer.getCode());
             rpcRequest.setMessageType(Message.RPC_MESSAGE_TYPE_REQUEST);
             rpcRequest.setCompress(this.compressType.getCode());
             ChannelFuture channelFuture = channel.writeAndFlush(rpcRequest);

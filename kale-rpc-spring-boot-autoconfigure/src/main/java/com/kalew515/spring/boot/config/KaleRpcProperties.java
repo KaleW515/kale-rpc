@@ -14,6 +14,9 @@ public class KaleRpcProperties {
     public MonitorCenterConfig monitorCenter;
 
     @NestedConfigurationProperty
+    public IdGeneratorCenterConfig idGeneratorCenter;
+
+    @NestedConfigurationProperty
     public ServerConfig server;
 
     @NestedConfigurationProperty
@@ -71,5 +74,13 @@ public class KaleRpcProperties {
 
     public void setConfigCenter (ConfigCenterConfig configCenter) {
         this.configCenter = configCenter;
+    }
+
+    public IdGeneratorCenterConfig getIdGeneratorCenter () {
+        return idGeneratorCenter;
+    }
+
+    public void setIdGeneratorCenter (IdGeneratorCenterConfig idGeneratorCenter) {
+        this.idGeneratorCenter = idGeneratorCenter;
     }
 }

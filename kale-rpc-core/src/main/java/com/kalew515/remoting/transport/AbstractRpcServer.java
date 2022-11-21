@@ -12,6 +12,8 @@ import com.kalew515.registry.RegisterCenter;
 import com.kalew515.registry.RegisterCenterImpl;
 import com.kalew515.utils.NetUtils;
 import com.kalew515.utils.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -21,14 +23,17 @@ import static com.kalew515.config.constants.defaultconfig.RpcServerDefaultConfig
 
 public abstract class AbstractRpcServer implements RpcServer {
 
-    public final RegisterCenter registerCenter;
-    public final MonitorCenter monitorCenter;
+    protected final RegisterCenter registerCenter;
+    protected final MonitorCenter monitorCenter;
 
-    public final ConfigCenter configCenter;
-    public RpcServerStateEnum serverState;
-    private String host;
+    protected final ConfigCenter configCenter;
+    protected RpcServerStateEnum serverState;
 
-    private Integer port;
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
+
+    protected String host;
+
+    protected Integer port;
 
     public AbstractRpcServer () {
         this.configCenter = SingletonFactory.getInstance(ConfigCenterImpl.class);
