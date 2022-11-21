@@ -1,6 +1,10 @@
 # kale-rpc
 一款支持java的简易版rpc框架，采用netty作为通信框架，支持zookeeper作为注册中心和配置中心，以及记录一些监控信息作为监控中心，支持rocketmq作为消息队列，适配spring boot
 
+github: [kale-rpc](https://github.com/KaleW515/kale-rpc)
+
+gitee: [kale-rpc](https://gitee.com/kalew515/kale-rpc)
+
 ## Features
 
 - [x] **适配spring boot**：适配spring boot，导入starter依赖即可快速使用框架
