@@ -30,7 +30,7 @@ public class LocalMessageQueue implements MessageQueue {
         try {
             return this.messages.take();
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            return null;
         }
     }
 }

@@ -29,7 +29,7 @@ public class NettyRpcServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead (ChannelHandlerContext ctx, Object msg) throws Exception {
         try {
             if (msg instanceof Message) {
-                logger.info("server receive msg: [{}]", msg);
+                logger.debug("server receive msg: [{}]", msg);
                 int messageType = ((Message) msg).getMessageType();
                 Message response = null;
                 if (messageType == Message.HEARTBEAT_TYPE_REQUEST) {
@@ -38,7 +38,6 @@ public class NettyRpcServerHandler extends ChannelInboundHandlerAdapter {
                 } else {
                     RpcRequest rpcRequest = (RpcRequest) msg;
                     Object result = rpcRequestHandler.handle(rpcRequest);
-                    logger.info(String.format("server get result: %s", result.toString()));
                     if (ctx.channel().isActive() && ctx.channel().isWritable()) {
                         response = new RpcResponse<>(((RpcRequest) msg).getRequestId(),
                                                      RpcResponseStatusEnum.SUCCESS.getMessage(),

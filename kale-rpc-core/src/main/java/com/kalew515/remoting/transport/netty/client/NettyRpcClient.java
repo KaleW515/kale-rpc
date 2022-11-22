@@ -77,7 +77,7 @@ public class NettyRpcClient extends AbstractRpcClient {
             ChannelFuture channelFuture = channel.writeAndFlush(rpcRequest);
             channelFuture.addListener((ChannelFutureListener) future -> {
                 if (future.isSuccess()) {
-                    logger.info("client send message: [{}]", rpcRequest);
+                    logger.debug("client send message: [{}]", rpcRequest);
                 } else {
                     future.channel().close();
                     resultFuture.completeExceptionally(future.cause());
@@ -103,7 +103,7 @@ public class NettyRpcClient extends AbstractRpcClient {
         CompletableFuture<Channel> completableFuture = new CompletableFuture<>();
         bootstrap.connect(inetSocketAddress).addListener((ChannelFutureListener) future -> {
             if (future.isSuccess()) {
-                logger.info("The client has connected [{}] successful!",
+                logger.debug("The client has connected [{}] successful!",
                             inetSocketAddress.toString());
                 completableFuture.complete(future.channel());
             } else throw new IllegalStateException();

@@ -45,11 +45,11 @@ public final class CuratorUtil {
         try {
             if (REGISTERED_PATH_SET.contains(path) || zkClient.checkExists()
                                                               .forPath(path) != null) {
-                logger.info("The node already exists. The node is:[{}]", path);
+                logger.debug("The node already exists. The node is:[{}]", path);
             } else {
                 zkClient.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT)
                         .forPath(path);
-                logger.info("The node was created successfully. The node is:[{}]", path);
+                logger.debug("The node was created successfully. The node is:[{}]", path);
             }
             REGISTERED_PATH_SET.add(path);
         } catch (Exception e) {
@@ -61,7 +61,7 @@ public final class CuratorUtil {
         try {
             if (REGISTERED_PATH_SET.contains(path) || zkClient.checkExists()
                                                               .forPath(path) != null) {
-                logger.info("The node already exists. The node is:[{}]", path);
+                logger.debug("The node already exists. The node is:[{}]", path);
             } else {
                 if (data == null || data.length == 0) {
                     zkClient.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL)
@@ -71,7 +71,7 @@ public final class CuratorUtil {
                                        .withMode(CreateMode.EPHEMERAL).forPath(path, data);
                     zkClient.setData().forPath(s, data);
                 }
-                logger.info("The node was created successfully. The node is:[{}]", path);
+                logger.debug("The node was created successfully. The node is:[{}]", path);
             }
             REGISTERED_PATH_SET.add(path);
         } catch (Exception e) {
@@ -84,10 +84,10 @@ public final class CuratorUtil {
         try {
             if (!REGISTERED_PATH_SET.contains(path) && zkClient.checkExists()
                                                                .forPath(path) == null) {
-                logger.info("The node is not exists. The node is:[{}]", path);
+                logger.debug("The node is not exists. The node is:[{}]", path);
             } else {
                 zkClient.delete().deletingChildrenIfNeeded().forPath(path);
-                logger.info("The node was deleted successfully. The node is:[{}]", path);
+                logger.debug("The node was deleted successfully. The node is:[{}]", path);
             }
             REGISTERED_PATH_SET.remove(path);
         } catch (Exception e) {
@@ -178,6 +178,7 @@ public final class CuratorUtil {
             try {
                 if (p.endsWith(inetSocketAddress.toString()) || p.endsWith(
                         inetSocketAddress.getAddress().getHostAddress())) {
+                    logger.info("do clear path: {}", p);
                     zkClient.delete().deletingChildrenIfNeeded().forPath(p);
                 }
             } catch (Exception e) {

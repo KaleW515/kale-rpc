@@ -20,7 +20,7 @@ public class RpcClientIdleHandler extends ChannelDuplexHandler {
         if (evt instanceof IdleStateEvent) {
             IdleState state = ((IdleStateEvent) evt).state();
             if (state == IdleState.WRITER_IDLE) {
-                logger.info("write idle happen [{}]", ctx.channel().remoteAddress());
+                logger.debug("write idle happen [{}]", ctx.channel().remoteAddress());
                 Channel channel = ctx.channel();
                 HeartBeatRequest heartBeatRequest = new HeartBeatRequest(0L);
                 heartBeatRequest.setMessageType(Message.HEARTBEAT_TYPE_REQUEST);

@@ -12,8 +12,7 @@ import java.net.UnknownHostException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.kalew515.config.constants.RpcConfigConstants.RPC_REGISTER_CENTER_ADDRESS;
-import static com.kalew515.config.constants.RpcConfigConstants.SERVER_PORT;
+import static com.kalew515.config.constants.RpcConfigConstants.*;
 
 public class CustomShutdownHook {
 
@@ -34,23 +33,29 @@ public class CustomShutdownHook {
         logger.info("addShutdownHook for clearAll");
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             logger.info("do clearAll shutdown hook");
-            for (Map.Entry<Object, ShutdownPolicy> entry :
-                    shouldShutdown.entrySet()) {
-                logger.info("do {} shutdown", entry.getKey().toString());
-                entry.getValue().shutdown();
-            }
+
+            // clear registry path
+            ConfigCenter configCenter = SingletonFactory.getInstance(ConfigCenterImpl.class);
+            int port = Integer.parseInt(configCenter.getConfig(SERVER_PORT));
+            String address = configCenter.getConfig(RPC_REGISTER_CENTER_ADDRESS);
+            InetSocketAddress inetSocketAddress =
+                    new InetSocketAddress(configCenter.getConfig(SERVER_HOST), port);
+            logger.info("do curator clear registry");
+            CuratorUtil.clearRegistry(CuratorUtil.getZkClient(address), inetSocketAddress);
+
+            // stop all created thread pool
             try {
-                ConfigCenter configCenter = SingletonFactory.getInstance(ConfigCenterImpl.class);
-                int port = Integer.parseInt(configCenter.getConfig(SERVER_PORT));
-                String address = configCenter.getConfig(RPC_REGISTER_CENTER_ADDRESS);
-                InetSocketAddress inetSocketAddress =
-                        new InetSocketAddress(InetAddress.getLocalHost()
-                                                         .getHostAddress(), port);
-                logger.info("do curator clear registry");
-                CuratorUtil.clearRegistry(CuratorUtil.getZkClient(address), inetSocketAddress);
-            } catch (UnknownHostException ignored) {
+                ThreadPoolFactoryUtil.shutDownAllThreadPool();
+            } catch (Exception ignored) {
+
             }
-            ThreadPoolFactoryUtil.shutDownAllThreadPool();
+
+            // stop registered shutdown policy
+            shouldShutdown.forEach((key, value) -> {
+                logger.info("do {} shutdown", key.toString());
+                value.shutdown();
+                logger.info("do {} shutdown success", key.toString());
+            });
         }));
     }
 }

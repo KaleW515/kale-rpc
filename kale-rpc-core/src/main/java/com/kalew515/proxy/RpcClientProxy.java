@@ -78,7 +78,7 @@ public class RpcClientProxy implements InvocationHandler {
 
     @Override
     public Object invoke (Object proxy, Method method, Object[] args) {
-        logger.info("invoked method: [{}]", method.getName());
+        logger.debug("invoked method: [{}]", method.getName());
         RpcRequest rpcRequest = new RpcRequest(idGeneratorCenter.generateId(),
                                                method.getDeclaringClass().getName(),
                                                method.getName(), args, method.getParameterTypes(),
@@ -90,10 +90,10 @@ public class RpcClientProxy implements InvocationHandler {
         String rpcServiceName = rpcRequest.getRpcServiceName();
         // load balancing
         String targetServiceUrl;
-        logger.info("loadBalancer is " + loadBalance.getClass().getCanonicalName());
+        logger.debug("loadBalancer is " + loadBalance.getClass().getCanonicalName());
         targetServiceUrl = loadBalance.selectServiceAddress(serviceUrlList,
                                                             rpcRequest);
-        logger.info("Successfully found the service address: [{}]", targetServiceUrl);
+        logger.debug("Successfully found the service address: [{}]", targetServiceUrl);
         if (StringUtils.isBlank(targetServiceUrl)) {
             throw new RpcException(SERVICE_CAN_NOT_BE_FOUND, rpcServiceName);
         }
@@ -105,7 +105,7 @@ public class RpcClientProxy implements InvocationHandler {
         try {
             rpcResponse = completableFuture.get(timeout, TimeUnit.MILLISECONDS);
         } catch (TimeoutException | ExecutionException e) {
-            logger.info("request failed, fail strategy triggered");
+            logger.debug("request failed, fail strategy triggered");
             rpcResponse = this.failStrategy.strategy(
                     new RequestContext(transporter, rpcRequest,
                                        inetSocketAddress,

@@ -39,7 +39,7 @@ public abstract class AbstractRpcClient implements RpcClient {
         this.configCenter = SingletonFactory.getInstance(ConfigCenterImpl.class);
         this.registerCenter = SingletonFactory.getInstance(RegisterCenterImpl.class);
         String loadBalancer = configCenter.getConfig(RPC_LOAD_BALANCER);
-        logger.info("loadBalancer is [{}]", loadBalancer);
+        logger.debug("loadBalancer is [{}]", loadBalancer);
         this.loadBalance = ExtensionLoader.getExtensionLoader(LoadBalance.class)
                                           .getExtension(loadBalancer);
     }

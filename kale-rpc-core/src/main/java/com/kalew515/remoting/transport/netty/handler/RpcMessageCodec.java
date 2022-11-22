@@ -54,7 +54,7 @@ public class RpcMessageCodec extends MessageToMessageCodec<ByteBuf, Message> {
             int fullLength = RpcMessageConstants.HEAD_LENGTH;
             if (messageType != Message.HEARTBEAT_TYPE_REQUEST && messageType != Message.HEARTBEAT_TYPE_RESPONSE) {
                 String name = SerializerEnum.getName(msg.getSerializer());
-                logger.info("serializer name: [{}] ", name);
+                logger.debug("serializer name: [{}] ", name);
                 Serializer serializer = ExtensionLoader.getExtensionLoader(Serializer.class)
                                                        .getExtension(name);
                 body = serializer.serialize(msg);
@@ -81,7 +81,7 @@ public class RpcMessageCodec extends MessageToMessageCodec<ByteBuf, Message> {
     @Override
     protected void decode (ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf,
                            List<Object> list) throws Exception {
-        logger.info("byteBuf length: [{}]", byteBuf.readableBytes());
+        logger.debug("byteBuf length: [{}]", byteBuf.readableBytes());
         if (byteBuf.readableBytes() >= RpcMessageConstants.TOTAL_LENGTH) {
             try {
                 list.add(decodeFrame(byteBuf));

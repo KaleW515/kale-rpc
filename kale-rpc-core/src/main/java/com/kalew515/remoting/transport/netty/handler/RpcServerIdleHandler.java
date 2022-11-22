@@ -18,8 +18,8 @@ public class RpcServerIdleHandler extends ChannelDuplexHandler {
         if (evt instanceof IdleStateEvent) {
             IdleState state = ((IdleStateEvent) evt).state();
             if (state == IdleState.READER_IDLE) {
-                logger.info("idle check happen, so close the connection");
                 ctx.close();
+                logger.debug("idle check happen, so close the connection");
             }
         } else {
             super.userEventTriggered(ctx, evt);

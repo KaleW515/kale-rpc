@@ -74,7 +74,7 @@ public class NettyRpcServer extends AbstractRpcServer {
                                }
                            });
             serverBootstrap.bind(host, port).sync();
-            logger.info("wait for connecting....");
+            logger.debug("wait for connecting....");
             // shutdown executors by shutdown hook
             registerGroupShutdown();
         } catch (InterruptedException e) {

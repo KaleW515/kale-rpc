@@ -26,7 +26,7 @@ public class RpcServerMonitorHandler extends ChannelDuplexHandler {
         this.monitorCenter.reportConn(
                 ctx.channel().localAddress().toString().split(":")[0],
                 ctx.channel().remoteAddress().toString());
-        logger.info("report connect to register center");
+        logger.debug("report connect to register center");
     }
 
     @Override
@@ -34,7 +34,7 @@ public class RpcServerMonitorHandler extends ChannelDuplexHandler {
         this.monitorCenter.reportDisconn(
                 ctx.channel().localAddress().toString().split(":")[0],
                 ctx.channel().remoteAddress().toString());
-        logger.info("report disconnect to register center");
+        logger.debug("report disconnect to register center");
     }
 
     @Override

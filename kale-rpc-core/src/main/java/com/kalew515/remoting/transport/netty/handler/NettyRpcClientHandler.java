@@ -26,13 +26,13 @@ public class NettyRpcClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead (ChannelHandlerContext ctx, Object msg) throws Exception {
         try {
-            logger.info("client receive msg: [{}]", msg);
+            logger.debug("client receive msg: [{}]", msg);
             if (msg instanceof Message) {
                 Message message = (Message) msg;
                 int messageType = message.getMessageType();
                 if (messageType == Message.HEARTBEAT_TYPE_RESPONSE) {
                     HeartBeatResponse heartBeatResponse = (HeartBeatResponse) message;
-                    logger.info("heart [{}]", heartBeatResponse.getPong());
+                    logger.debug("heart [{}]", heartBeatResponse.getPong());
                 } else {
                     RpcResponse<?> rpcResponse = (RpcResponse<?>) message;
                     unprocessedRequests.complete(rpcResponse);

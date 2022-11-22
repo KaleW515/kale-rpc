@@ -30,18 +30,20 @@ public final class ThreadPoolFactoryUtil {
         return threadPool;
     }
 
-    public static void shutDownAllThreadPool () {
+    public static void shutDownAllThreadPool () throws Exception {
         logger.info("call shutDownAllThreadPool method");
-        THREAD_POOLS.entrySet().parallelStream().forEach(entry -> {
-            ExecutorService executorService = entry.getValue();
+        THREAD_POOLS.forEach((key, executorService) -> {
             executorService.shutdown();
-            logger.info("shut down thread pool [{}] [{}]", entry.getKey(),
-                        executorService.isTerminated());
             try {
-                executorService.awaitTermination(10, TimeUnit.SECONDS);
+                if (!executorService.awaitTermination(5, TimeUnit.SECONDS)) {
+                    executorService.shutdownNow();
+                }
             } catch (InterruptedException e) {
-                logger.error("Thread pool never terminated");
                 executorService.shutdownNow();
+                Thread.currentThread().interrupt();
+            } finally {
+                logger.info("shut down thread pool [{}] [{}]", key,
+                            executorService.isTerminated());
             }
         });
     }

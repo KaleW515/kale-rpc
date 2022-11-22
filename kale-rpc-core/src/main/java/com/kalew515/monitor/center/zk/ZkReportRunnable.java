@@ -37,6 +37,9 @@ public class ZkReportRunnable implements Runnable {
     public void run () {
         while (flag) {
             AbstractMonitorMessage abstractMonitorMessage = this.messageCenter.takeMessage();
+            if (abstractMonitorMessage == null) {
+                return;
+            }
             int messageType = abstractMonitorMessage.getMessageType();
             switch (messageType) {
                 case 1: // connection message
